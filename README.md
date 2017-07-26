@@ -1,0 +1,1 @@
+# Django Image Compressor
