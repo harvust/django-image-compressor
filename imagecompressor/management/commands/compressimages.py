@@ -17,7 +17,7 @@ class Command(BaseCommand):
     help = 'Compresses images using Pillow'
 
     def add_arguments(self, parser):
-        parser.add_argument('path', nargs='?', default=Path(), help='Type the path relative to STATIC_ROOT, or app name, whose images you want compressed.')
+        parser.add_argument('path', nargs='?', default=Path(), help='The path relative to STATIC_ROOT, or app name, whose images you want compressed.')
         parser.add_argument('--optimize', action="store_true", help="If present and true, indicates that the encoder should make an extra pass over the image in order to select optimal encoder settings.")
         parser.add_argument('--quality', type=int, help="The image quality, on a scale from 1 (worst) to 95 (best).")
         parser.add_argument('--progressive', action="store_true", help="If present and true, indicates that this image should be stored as a progressive JPEG file.")
@@ -26,8 +26,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         STATIC_ROOT = Path(settings.STATIC_ROOT)
+        try:
+            IMAGE_COMPRESS_ROOT = Path(settings.IMAGE_COMPRESS_ROOT)
+        except AttributeError:
+            IMAGE_COMPRESS_ROOT = Path('IMAGES')
+
         staticfiles_manifest_path = STATIC_ROOT / 'staticfiles.json'
-        images_directory = STATIC_ROOT / 'images'
+        images_directory = STATIC_ROOT / IMAGE_COMPRESS_ROOT
         search_path = STATIC_ROOT / options['path']
 
         try:
@@ -48,7 +53,7 @@ class Command(BaseCommand):
                         self.stdout.write('Processing: %s' % original_image_path)
 
                         new_image_name = ''.join((str(uuid.uuid4()), ext))
-                        relative_new_image_path = Path('images', new_image_name)
+                        relative_new_image_path = IMAGE_COMPRESS_ROOT / new_image_name
                         full_new_image_path = STATIC_ROOT / relative_new_image_path
 
                         new_image_options = get_image_options(options, ext)
