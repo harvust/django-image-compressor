@@ -44,10 +44,10 @@ class Command(BaseCommand):
         with open(staticfiles_manifest_path) as staticfiles_manifest:
             manifest = json.load(staticfiles_manifest)
             for file_key in manifest.get('paths', {}):
-                file = Path(file_key)
-                ext = file.suffix.lower()
+                file_path = Path(file_key)
+                ext = file_path.suffix.lower()
                 if ext in EXTENSION_OPTIONS:
-                    original_image_path = STATIC_ROOT / file
+                    original_image_path = STATIC_ROOT / file_path
                     if search_path in original_image_path.parents:
 
                         self.stdout.write('Processing: %s' % original_image_path)

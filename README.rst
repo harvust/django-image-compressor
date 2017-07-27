@@ -42,7 +42,7 @@ Run :code:`compressimages`
 **Positional arguments**
 
 :code:`path`
-    The path relative to STATIC_ROOT, or app name, whose images you want compressed.
+    The path relative to :code:`STATIC_ROOT`, or app name, whose images you want compressed.
 
 
 **Optional Arguments**
