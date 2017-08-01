@@ -11,7 +11,7 @@ setup(
     version='0.0.2',
     description='Compress static images from Django with Pillow',
     author='James Christopher',
-    author_email='renegadehall1@gmail.com',
+    author_email='jcahall@washington.edu',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
