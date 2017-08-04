@@ -8,7 +8,7 @@ install_reqs = [
 
 setup(
     name='django-image-compressor',
-    version='0.0.2',
+    version='0.0.3',
     description='Compress static images from Django with Pillow',
     author='James Christopher',
     author_email='jcahall@washington.edu',
@@ -20,7 +20,6 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python',

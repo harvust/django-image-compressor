@@ -34,12 +34,7 @@ class Command(BaseCommand):
         staticfiles_manifest_path = STATIC_ROOT / 'staticfiles.json'
         images_directory = STATIC_ROOT / IMAGE_COMPRESS_ROOT
         search_path = STATIC_ROOT / options['path']
-
-        try:
-            shutil.rmtree(str(images_directory))
-        except FileNotFoundError:
-            pass
-        images_directory.mkdir()
+        images_directory.mkdir(exist_ok=True)
 
         with open(staticfiles_manifest_path) as staticfiles_manifest:
             manifest = json.load(staticfiles_manifest)
