@@ -8,7 +8,7 @@ install_reqs = [
 
 setup(
     name='django-image-compressor',
-    version='0.0.3',
+    version='0.0.4',
     description='Compress static images from Django with Pillow',
     author='James Christopher',
     author_email='jcahall@washington.edu',
