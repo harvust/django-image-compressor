@@ -41,7 +41,7 @@ class Command(BaseCommand):
             pass
         images_directory.mkdir()
 
-        with open(staticfiles_manifest_path) as staticfiles_manifest:
+        with staticfiles_manifest_path.open() as staticfiles_manifest:
             manifest = json.load(staticfiles_manifest)
             for file_key in manifest.get('paths', {}):
                 file_path = Path(file_key)
@@ -65,7 +65,7 @@ class Command(BaseCommand):
 
                         manifest['paths'][file_key] = str(relative_new_image_path)
 
-        with open(staticfiles_manifest_path, 'w') as staticfiles_manifest:
+        with staticfiles_manifest_path.open('w') as staticfiles_manifest:
             json.dump(manifest, staticfiles_manifest)
 
 
